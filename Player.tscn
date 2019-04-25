@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 11.0523, 20.2746 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10.4632, 1.90379 )
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 20.0
+margin_bottom = 40.0
+
+[node name="Player contact" type="CollisionShape2D" parent="."]
+position = Vector2( 9.965, 20.0375 )
+scale = Vector2( 0.90603, 0.991375 )
+shape = SubResource( 1 )
+
+[node name="Feet" type="Area2D" parent="."]
+position = Vector2( 9.6526, 36.2077 )
+collision_layer = 2
+
+[node name="Ground check" type="CollisionShape2D" parent="Feet"]
+position = Vector2( 0.31277, 3.67139 )
+scale = Vector2( 0.955234, 0.187156 )
+shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[connection signal="body_shape_entered" from="Feet" to="." method="_on_Feet_body_shape_entered"]
+[connection signal="body_shape_exited" from="Feet" to="." method="_on_Feet_body_shape_exited"]

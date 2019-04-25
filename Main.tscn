@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Platform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Portal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Platform" parent="." instance=ExtResource( 2 )]
+position = Vector2( -548.334, 353.343 )
+scale = Vector2( 3.32343, 1 )
+
+[node name="Platform2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 558.748, 31.3317 )
+
+[node name="Platform3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1029.45, 387.197 )
+
+[node name="Platform4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 386.454, 231.197 )
+scale = Vector2( 0.36, 1 )
+
+[node name="Platform6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1414.17, 486.658 )
+scale = Vector2( 0.36, 1 )
+
+[node name="Platform7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1590.35, 407.377 )
+scale = Vector2( 0.36, 1 )
+
+[node name="Platform8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1930.96, 395.631 )
+scale = Vector2( 0.36, 1 )
+
+[node name="Platform5" parent="." instance=ExtResource( 2 )]
+position = Vector2( -542.171, -566.508 )
+rotation = 1.5708
+scale = Vector2( 3.32343, 1 )
+
+[node name="Portal" parent="." instance=ExtResource( 3 )]
+position = Vector2( 226.217, 247.2 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 41.4372, 310.528 )
+
+[connection signal="player_dead" from="Player" to="." method="_on_Player_player_dead"]
