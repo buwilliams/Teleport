@@ -15,3 +15,8 @@ func _ready():
 func _on_Player_player_dead():
 	get_tree().reload_current_scene()
 	pass # Replace with function body.
+
+
+func _on_Portal_body_entered(body):
+	body.position = get_node("./Portal2").position
+	pass # Replace with function body.

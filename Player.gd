@@ -6,17 +6,16 @@ export (int) var speed = 350
 export (int) var gravity = 20000
 export (int) var jump = 800
 
-var grounded = false
-
 var max_jump_process_count = 12
 var jump_process_count = 0
 
 var double_jump = false
 var jumping = false
+var falling = false
+var grounded = false
 
 var velocity = Vector2(0, 0)
-
-var max_player_y = 1500
+var max_player_y = 2500
 
 func get_input():
 	var adjusted_gravity = gravity
@@ -34,9 +33,11 @@ func get_input():
 		double_jump = false
 		jump_process_count = 0
 		jumping = false
+		falling = false
 		
 	if Input.is_action_just_pressed('ui_up'):
 		if grounded == false && double_jump == false:
+			jumping = true
 			double_jump = true
 			jump_process_count = 0
 			print("double jump")
@@ -46,6 +47,11 @@ func get_input():
 	if jumping == true && jump_process_count <= max_jump_process_count:
 		velocity.y = -jump
 		jump_process_count += 1
+	elif jumping == true && jump_process_count >= max_jump_process_count:
+		jumping = false
+	
+	if jumping == false && grounded == false:
+		falling = true
 
 func _physics_process(delta):
 	velocity = Vector2(0, 0)
@@ -54,6 +60,8 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	
 	get_input()
+	
+	#print("Falling:", falling)
 	
 	check_player_position()
 	
